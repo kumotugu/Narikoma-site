@@ -1,0 +1,2 @@
+# Narikoma-site
+Inquiry
