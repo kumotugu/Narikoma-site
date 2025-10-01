@@ -1,0 +1,43 @@
+BODY {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #ff7043;
+}
+
+/*.wrapper
+{
+display:flex;
+height:100vh;
+}*/
+
+/*.side
+{
+width: 4px;
+background-color: #333;
+}*/
+
+.container 
+{
+    max-width: 800px; /* ’†‰›‚Ì•‚ğŒÅ’è */
+    margin: 0 auto; /* ©“®‚Å’†‰›Šñ‚¹ */
+    background-color: white; /* ’†‰›‚¾‚¯”’”wŒi */
+    padding: 40px 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* ‚Ó‚ñ‚í‚è•‚‚©‚¹‚é */
+}
+
+
+.content
+{
+    flex:1;
+    padding: 20px;
+    text-align:center;
+    background-color:white;
+}
+
+hr 
+{
+    border: none;
+    border-top: 2px solid #333;
+    margin: 20px 0;
+}
