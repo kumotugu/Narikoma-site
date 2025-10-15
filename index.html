@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>ナリコマ社内ホームページ</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <!-- ヘッダー -->
     <header class="global-header">
         <div class="header-left">
-            <a href="/">
-                <div class="logo">
-                    <img src="images/narikoma.jpg" alt="ナリちゃん">
-                </div>
-            </a>
+            <div class="logo">
+                <span>NK</span>
+            </div>
             <span>NARIKOMA</span>
         </div>
 
@@ -28,122 +26,62 @@
         <div class="header-icons">
             <ul>
                 <li>
-                    <a href="#">
-                        <span class="icon-btn">🔍</span>
-                        さがす
-                    </a>
+                    <a href="#"><span class="icon-btn">🔍</span>さがす</a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="icon-btn">👤</span>
-                        ログイン
-                    </a>
+                    <a href="#"><span class="icon-btn">👤</span>ログイン</a>
                 </li>
             </ul>
         </div>
     </header>
 
+    <!-- メインビジュアル -->
     <div class="main-visual-wrapper">
-        <div class="main-visual">
-            <div class="slide-content">
-                <div class="slide-text">
-                    瞬
-                    一
-                    な
-                    い
-                    ね
-                    い
-                    て
-                    事
-                    食
-                    一
-                    な
-                    か
-                    や
-                    穏
-                    る
-                    彩
-                    を
-                    々
-                    日
-                </div>
+        <div class="side-images">
+            <img src="images/sake.png" alt="鮭">
+            <img src="images/onigiri.png" alt="おにぎり">
+            <img src="images/pudding.png" alt="プリン">
+        </div>
 
-                <div class="slides-wrapper">
-                    <figure class="slide-content slide-1"></figure>
-                    <figure class="slide-content slide-2"></figure>
-                    <figure class="slide-content slide-3"></figure>
-                </div>
+        <div class="main-visual">
+            <div class="slides-wrapper">
+                <figure class="slide-content slide-1"></figure>
+                <figure class="slide-content slide-2"></figure>
+                <figure class="slide-content slide-3"></figure>
+            </div>
+            <div class="slide-text">
+                穏やかな日々に彩りを
+                一食一食に
+                瞬間の幸せを
             </div>
         </div>
     </div>
 
+    <!-- ニュースエリア -->
     <div class="news-area">
         <h2 class="news-title">ナリコマNEWS</h2>
-
         <ul class="news-list">
-            <li>
-                <a href="#">
-                    <span class="news-date">2025.10.01</span>
-                    <span class="news-tag">重要</span>
-                    <span class="news-title-text">【全社員必須】新評価制度に関する説明会資料を公開しました。</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="news-date">2025.09.28</span>
-                    <span class="news-tag" style="background-color: #007bff;">システム</span>
-                    <span class="news-title-text">経費精算システム「Navi-EX」の定期メンテナンスのお知らせ（10/10 1:00-5:00）</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="news-date">2025.09.25</span>
-                    <span class="news-tag" style="background-color: #28a745;">イベント</span>
-                    <span class="news-title-text">【社内イベント】秋の懇親会のお知らせと参加申し込みフォーム</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="news-date">2025.09.20</span>
-                    <span class="news-title-text">【人事異動】〇〇部門および関連部署の一部異動について</span>
-                </a>
-            </li>
+            <li><a href="#"><span class="news-date">2025.10.01</span><span class="news-tag">重要</span><span class="news-title-text">新評価制度に関する説明会資料を公開しました。</span></a></li>
+            <li><a href="#"><span class="news-date">2025.09.28</span><span class="news-tag">システム</span><span class="news-title-text">経費精算システム「Navi-EX」の定期メンテナンスのお知らせ。</span></a></li>
+            <li><a href="#"><span class="news-date">2025.09.25</span><span class="news-tag">イベント</span><span class="news-title-text">秋の懇親会のお知らせと参加申し込みフォーム</span></a></li>
         </ul>
     </div>
 
-    <!-- 🔸 左側に縦に並ぶ3枚のぷかぷか画像 -->
-    <div class="side-image-column">
-        <img src="images/sake.png" alt="鮭" class="side-img floaty">
-        <img src="images/onigiri.png" alt="おにぎり" class="side-img floaty" style="animation-delay: 1s;">
-        <img src="images/pudding.png" alt="プリン" class="side-img floaty" style="animation-delay: 2s;">
-    </div>
-
-    <!-- 🔸 右下 ナリちゃんチャットボタン -->
+    <!-- 右下ナリちゃん -->
     <div class="fixed-chatbot-container">
-        <a href="../inquiry/index.html" class="icon-box floaty-nari" target="_blank"></a>
+        <a href="chat.html" class="icon-box"></a>
         <span class="arrow">→</span>
         <div class="text">チャットボットに聞いてみて</div>
     </div>
 
     <script>
         const wrapper = document.querySelector('.slides-wrapper');
-        const slides = document.querySelectorAll('.slide-content');
-        const totalSlides = slides.length;
         let currentIndex = 0;
-        const slideInterval = 3000;
-
-        function updateSlide() {
-            const moveDistance = -currentIndex * 100;
-            wrapper.style.transform = `translateX(${moveDistance}%)`;
-        }
-
-        function nextSlide() {
+        const totalSlides = document.querySelectorAll('.slide-content').length;
+        setInterval(() => {
             currentIndex = (currentIndex + 1) % totalSlides;
-            updateSlide();
-        }
-
-        setInterval(nextSlide, slideInterval);
-        updateSlide();
+            wrapper.style.transform = `translateX(${-currentIndex * 100}%)`;
+        }, 3000);
     </script>
 </body>
 </html>
