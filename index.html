@@ -4,45 +4,52 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ナリコマホームページ</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- ← style.cssを読み込む -->
+    <title>ナリちゃんのお困りごと相談室</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="hero">
-        <div class="hero-content">
-            <img src="logo.png" alt="ナリちゃんロゴ" class="logo">
-            <h1>ナリちゃんのお困りごと相談室</h1>
-            <p>あなたの「ちょっと困った」をサポートします！</p>
-            <a href="contact.html" class="cta-button">相談してみる ➤</a>
-        </div>
-    </header>
+    <!-- 背景スライドショー -->
+    <div class="slideshow">
+        <div class="slide fade" style="background-image: url('images/bg1.jpg');"></div>
+        <div class="slide fade" style="background-image: url('images/bg2.jpg');"></div>
+        <div class="slide fade" style="background-image: url('images/bg3.jpg');"></div>
+    </div>
 
-    <section class="features">
-        <div class="feature">
-            <img src="img1.jpg" alt="相談イメージ">
-            <h2>かんたん相談</h2>
-            <p>質問を入力するだけで、AIナリちゃんがすぐに答えます。</p>
-        </div>
-        <div class="feature">
-            <img src="img2.jpg" alt="サポートイメージ">
-            <h2>丁寧なサポート</h2>
-            <p>わからないところは、丁寧に説明してくれます。</p>
-        </div>
-        <div class="feature">
-            <img src="img3.jpg" alt="安心サポート">
-            <h2>安心の対応</h2>
-            <p>3回までやり取りしても解決しなければ、電話サポートも。</p>
-        </div>
-    </section>
+    <!-- 左側の縦画像 -->
+    <div class="side-images">
+        <img src="images/鮭.png" alt="鮭キャラ">
+        <img src="images/side2.png" alt="左画像2">
+        <img src="images/side3.png" alt="左画像3">
+    </div>
 
-    <footer>
-        <p>© 2025 ナリちゃんのお困りごと相談室</p>
-    </footer>
+    <!-- 中央のメインコンテンツ -->
+    <div class="center-content">
+        <img src="images/logo.png" alt="ナリちゃんロゴ" class="logo">
+        <h1>ナリちゃんのお困りごと相談室</h1>
+        <p>あなたの「ちょっと困った」をナリちゃんが解決！</p>
+        <a href="contact.html" class="cta-button">相談してみる ➤</a>
+    </div>
 
-    <!-- ✅ 右下固定のナリちゃんボタン -->
+    <!-- ナリちゃん（右下固定） -->
     <a href="contact.html" class="contact-floating">
         <div class="contact-text">お問い合わせはこちら</div>
-        <img src="narikoma.jpg" alt="ナリちゃん" class="contact-avatar">
+        <img src="images/narikoma.jpg" alt="ナリちゃん" class="contact-avatar">
     </a>
+
+    <!-- スライドショー制御 -->
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll(".slide");
+
+        function showSlides() {
+            slides.forEach(slide => (slide.style.opacity = "0"));
+            slideIndex++;
+            if (slideIndex > slides.length) slideIndex = 1;
+            slides[slideIndex - 1].style.opacity = "1";
+            setTimeout(showSlides, 5000);
+        }
+
+        showSlides();
+    </script>
 </body>
 </html>
