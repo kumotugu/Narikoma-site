@@ -1,122 +1,46 @@
-<link rel="stylesheet" href="css/style.css">
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ナリちゃんのお困りごと相談室</title>
-    <link rel="stylesheet" href="style.css"> <!-- 外部CSSを読み込み -->
+    <title>ナリコマホームページ</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- ← style.cssを読み込む -->
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header"><h2>ナリちゃんのお困りごと相談室</h2></div>
-        <div class="chatbox" id="chatbox">
-            <div class="message ai">
-                <div class="avatar">
-                    <img src="narikoma.jpg" alt="ナリちゃんのアイコン">
-                </div>
-                <p>こんにちは！何か質問はありますか？</p>
-            </div>
+    <header class="hero">
+        <div class="hero-content">
+            <img src="logo.png" alt="ナリちゃんロゴ" class="logo">
+            <h1>ナリちゃんのお困りごと相談室</h1>
+            <p>あなたの「ちょっと困った」をサポートします！</p>
+            <a href="contact.html" class="cta-button">相談してみる ➤</a>
         </div>
-        <div class="input-area" id="inputArea">
-            <input type="text" id="userInput" placeholder="メッセージを入力...">
-            <button onclick="sendMessage()">➤</button>
+    </header>
+
+    <section class="features">
+        <div class="feature">
+            <img src="img1.jpg" alt="相談イメージ">
+            <h2>かんたん相談</h2>
+            <p>質問を入力するだけで、AIナリちゃんがすぐに答えます。</p>
         </div>
-    </div>
+        <div class="feature">
+            <img src="img2.jpg" alt="サポートイメージ">
+            <h2>丁寧なサポート</h2>
+            <p>わからないところは、丁寧に説明してくれます。</p>
+        </div>
+        <div class="feature">
+            <img src="img3.jpg" alt="安心サポート">
+            <h2>安心の対応</h2>
+            <p>3回までやり取りしても解決しなければ、電話サポートも。</p>
+        </div>
+    </section>
 
-    <script>
-        let noCount = 0;
-        const MAX_ATTEMPTS = 3;
+    <footer>
+        <p>© 2025 ナリちゃんのお困りごと相談室</p>
+    </footer>
 
-        async function sendMessage() {
-            const userInput = document.getElementById('userInput');
-            const chatbox = document.getElementById('chatbox');
-            const question = userInput.value.trim();
-            if (!question) return;
-
-            chatbox.innerHTML += `<div class="message user"><p>${question}</p></div>`;
-            userInput.value = '';
-            chatbox.scrollTop = chatbox.scrollHeight;
-
-            let answer = "「" + question + "」ですね。AIオペレーターが回答します。";
-            try {
-                const response = await fetch('/ask', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ question: question })
-                });
-                const data = await response.json();
-                answer = data.answer || data.error || answer;
-            } catch (e) {
-                // エラー時の仮応答
-            }
-
-            handleAnswer(answer);
-            chatbox.scrollTop = chatbox.scrollHeight;
-        }
-
-        function handleAnswer(answer) {
-            const chatbox = document.getElementById('chatbox');
-            chatbox.innerHTML += `
-                    <div class="message ai">
-                        <div class="avatar">
-                            <img src="narikoma.jpg" alt="ナリちゃんのアイコン">
-                        </div>
-                        <p>${answer}</p>
-                    </div>
-                `;
-            chatbox.innerHTML += `
-                    <div class="message ai flow-control">
-                        <div class="avatar">
-                            <img src="narikoma.jpg" alt="ナリちゃんのアイコン">
-                        </div>
-                        <p>解決しましたか？
-                            <button onclick="handleFlow('yes', this)">はい</button>
-                            <button onclick="handleFlow('no', this)">いいえ</button>
-                        </p>
-                    </div>
-                `;
-        }
-
-        function handleFlow(type, buttonElement) {
-            const chatbox = document.getElementById('chatbox');
-            const inputArea = document.getElementById('inputArea');
-
-            const flowButtons = buttonElement.parentNode.querySelectorAll('button');
-            flowButtons.forEach(btn => btn.disabled = true);
-
-            let flowMessage = "";
-
-            if (type === 'yes') {
-                flowMessage = "お役に立ててよかったです！ほかに質問はありますか？";
-                noCount = 0;
-            } else {
-                noCount++;
-                if (noCount >= MAX_ATTEMPTS) {
-                    const displayPhoneNumber = '012-3456-7890';
-                    const rawPhoneNumber = '01234567890';
-                    const telLink = `<a href="tel:${rawPhoneNumber}" style="color: #D32F2F; text-decoration: underline;">${displayPhoneNumber}</a>`;
-                    flowMessage = `お手数ですがこちらまでお電話ください：<strong>${telLink}</strong>`;
-                    // inputArea.style.display = 'none'; // 受付停止したい場合
-                } else {
-                    flowMessage = "もう一度教えてください。。";
-                }
-            }
-
-            chatbox.innerHTML += `
-                    <div class="message ai flow-response">
-                        <div class="avatar">
-                            <img src="narikoma.jpg" alt="ナリちゃんのアイコン">
-                        </div>
-                        <p>${flowMessage}</p>
-                    </div>
-                `;
-
-            chatbox.scrollTop = chatbox.scrollHeight;
-        }
-
-        document.getElementById('userInput').addEventListener('keypress', e => {
-            if (e.key === 'Enter') sendMessage();
-        });
-    </script>
+    <!-- ✅ 右下固定のナリちゃんボタン -->
+    <a href="contact.html" class="contact-floating">
+        <div class="contact-text">お問い合わせはこちら</div>
+        <img src="narikoma.jpg" alt="ナリちゃん" class="contact-avatar">
+    </a>
 </body>
 </html>
