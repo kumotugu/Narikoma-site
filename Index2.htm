@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ナリコマ社内ホームページ - 検索</title>
+    <style>
+        /* -------------------------------------- */
+        /* 基本設定とヘッダーのCSS                    */
+        /* -------------------------------------- */
+        body {
+            margin: 0;
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .global-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            background-color: white;
+            padding-right: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-left {
+            background-color: #d80000;
+            height: 60px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+        }
+
+            .header-left span {
+                color: white;
+                font-size: 1.2em;
+                font-weight: bold;
+                margin-left: 10px;
+            }
+
+        .header-nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        .header-nav a {
+            font-weight: bold;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+            .header-nav a:hover {
+                color: #d80000;
+            }
+
+        .header-icons ul {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .header-icons li {
+            text-align: center;
+            font-size: 0.8em;
+            color: #333;
+        }
+
+        .header-icons .icon-btn {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 2px;
+            color: #d80000;
+        }
+        /* -------------------------------------- */
+        /* 検索ページ固有のCSS */
+        /* -------------------------------------- */
+        .search-area {
+            max-width: 800px; /* 検索エリアの最大幅 */
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+            .search-area h1 {
+                text-align: center;
+                color: #d80000;
+                margin-bottom: 30px;
+            }
+
+        .search-form-container {
+            display: flex;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .search-input {
+            flex-grow: 1;
+            padding: 15px 20px;
+            border: none;
+            font-size: 18px;
+            outline: none; /* フォーカス時の枠線を非表示 */
+        }
+
+        .search-button {
+            background-color: #d80000; /* ナリコマの赤 */
+            color: white;
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+            .search-button:hover {
+                background-color: #a80000;
+            }
+
+        /* 検索結果のスタイル */
+        .search-results h3 {
+            border-left: 5px solid #d80000;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        .result-item {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+            transition: box-shadow 0.2s;
+        }
+
+            .result-item:hover {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            .result-item a {
+                display: block;
+                font-weight: bold;
+                color: #007bff; /* リンクは青 */
+                font-size: 1.1em;
+                margin-bottom: 5px;
+            }
+
+                .result-item a:hover {
+                    text-decoration: underline;
+                }
+
+            .result-item p {
+                font-size: 0.9em;
+                color: #666;
+                margin: 0;
+            }
+    </style>
+</head>
+<body>
+
+    <header class="global-header">
+        <div class="header-left">
+            <a href="/">
+                <div class="logo">
+                    <img src="../narikoma.jpg" alt="ナリちゃん" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </a>
+            <span>NARIKOMA</span>
+        </div>
+        <nav class="header-nav">
+            <ul>
+                <li><a href="#">トピックス</a></li>
+                <li><a href="#">ピックアップ</a></li>
+                <li><a href="../support/support.html">サポート</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <ul>
+                <li>
+                    <a href="search.html" style="color: #d80000;">
+                        <span class="icon-btn">🔍</span>
+                        さがす
+                    </a>
+                </li>
+                <li>
+                    <a href="../login/login.html">
+                        <span class="icon-btn">👤</span>
+                        ログイン
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="search-area">
+        <h1>社内情報検索</h1>
+
+        <div class="search-form-container">
+            <input type="text" class="search-input" placeholder="資料名、社員名、キーワードを入力してください..." name="q" id="search-input">
+            <button class="search-button" id="search-button">🔍 検索</button>
+        </div>
+
+        <div class="search-results">
+            <h3>検索結果 (5件)</h3>
+
+            <div class="result-item">
+                <a href="#">2025年度 営業戦略資料_最終版</a>
+                <p>掲載部署: 営業企画部 | 更新日: 2025.10.01</p>
+            </div>
+            <div class="result-item">
+                <a href="#">【全社員向け】新評価制度ガイドライン</a>
+                <p>掲載部署: 人事部 | 更新日: 2025.09.28</p>
+            </div>
+            <div class="result-item">
+                <a href="#">経費精算システム 利用マニュアル</a>
+                <p>掲載部署: システム部 | 更新日: 2025.09.20</p>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

@@ -107,6 +107,49 @@
         .main-visual-wrapper {
             background-color: #d80000; /* 赤の背景 */
             padding-top: 20px; /* 上部とビジュアルの間にスペース */
+            position: relative;
+        }
+        /* 共通の装飾要素スタイル */
+        .visual-deco {
+            position: absolute;
+            width: 100px; /* 画像の幅 */
+            height: 100px; /* 画像の高さ */
+            z-index: 10;
+            /* 🎨 【重要】アニメーション設定 */
+            transition: transform 0.3s ease-out;
+            /* 画像の挿入（背景画像を使用） */
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        /* 左下の要素 */
+        .deco-left {
+            bottom: 0;
+            left: 20px; /* 左端からの距離 */
+            transform: rotate(0deg); /* 初期状態（回転なし） */
+            background-image: url('Onigiri.png');
+        }
+
+        /* 右下の要素 */
+        .deco-right {
+            bottom: 0;
+            right: 20px; /* 右端からの距離 */
+            transform: scale(1); /* 初期状態（サイズ変更なし） */
+            background-image: url('Purin.png');
+        }
+
+        /* -------------------------------------- */
+        /* ホバー時のアニメーション  */
+        /* -------------------------------------- */
+
+        .deco-left:hover {
+            /* 左側の装飾：ホバー時に回転させる */
+            transform: rotate(20deg);
+        }
+
+        .deco-right:hover {
+            /* 右側の装飾：ホバー時に少し拡大させる */
+            transform: scale(1.1);
         }
 
         .main-visual {
@@ -331,20 +374,20 @@
             <ul>
                 <li><a href="#">トピックス</a></li>
                 <li><a href="#">ピックアップ</a></li>
-                <li><a href="#">サポート</a></li>
+                <li><a href="support/support.html">サポート</a></li>
             </ul>
         </nav>
 
         <div class="header-icons">
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="search/search.html">
                         <span class="icon-btn">🔍</span>
                         さがす
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="login/login.html">
                         <span class="icon-btn">👤</span>
                         ログイン
                     </a>
@@ -354,6 +397,9 @@
     </header>
 
     <div class="main-visual-wrapper">
+        <div class="visual-deco deco-left"></div>
+        <div class="visual-deco deco-right"></div>
+
         <div class="main-visual">
             <div class="slide-content">
                 <div class="slide-text">

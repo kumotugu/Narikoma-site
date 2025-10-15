@@ -1,0 +1,300 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ナリコマ社内ホームページ - サポート</title>
+    <style>
+        /* -------------------------------------- */
+        /* 基本設定とヘッダーのCSS (共通部分) */
+        /* -------------------------------------- */
+        body {
+            margin: 0;
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .global-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            background-color: white;
+            padding-right: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-left {
+            background-color: #d80000;
+            height: 60px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+        }
+
+            .header-left span {
+                color: white;
+                font-size: 1.2em;
+                font-weight: bold;
+                margin-left: 10px;
+            }
+
+        .header-nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        .header-nav a {
+            font-weight: bold;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+            .header-nav a:hover {
+                color: #d80000;
+            }
+
+        .header-icons ul {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .header-icons li {
+            text-align: center;
+            font-size: 0.8em;
+            color: #333;
+        }
+
+        .header-icons .icon-btn {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 2px;
+            color: #d80000;
+        }
+        /* -------------------------------------- */
+        /* サポートページ固有のCSS */
+        /* -------------------------------------- */
+        .support-area {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+            .support-area h1 {
+                text-align: center;
+                color: #d80000;
+                margin-bottom: 40px;
+                font-size: 2.5em;
+            }
+
+        /* FAQ (よくある質問) スタイル */
+        .faq-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+            .faq-section h2 {
+                font-size: 1.5em;
+                color: #d80000;
+                border-bottom: 3px solid #d80000;
+                display: inline-block;
+                padding-bottom: 5px;
+                margin-bottom: 25px;
+            }
+
+        .faq-item {
+            margin-bottom: 15px;
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+            .faq-item:last-child {
+                border-bottom: none;
+            }
+
+        .faq-question {
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 10px;
+        }
+
+        .faq-answer {
+            background-color: #f4f4f4;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 4px;
+            color: #555;
+            display: none; /* 初期状態では非表示 */
+            line-height: 1.6;
+        }
+        /* 質問アイコン（+ や -） */
+        .faq-icon {
+            font-size: 1.2em;
+            color: #d80000;
+        }
+
+        /* 問い合わせエリア */
+        .contact-section {
+            text-align: center;
+            padding: 40px;
+            background-color: #e6e6e6;
+            border-radius: 8px;
+        }
+
+            .contact-section h2 {
+                color: #333;
+                margin-bottom: 15px;
+            }
+
+        .contact-button {
+            display: inline-block;
+            background-color: #007bff; /* 青色を使用 */
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+            .contact-button:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+
+    <header class="global-header">
+        <div class="header-left">
+            <a href="/">
+                <div class="logo">
+                    <img src="../narikoma.jpg" alt="ナリちゃん" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </a>
+            <span>NARIKOMA</span>
+        </div>
+        <nav class="header-nav">
+            <ul>
+                <li><a href="#">トピックス</a></li>
+                <li><a href="#">ピックアップ</a></li>
+                <li><a href="#">サポート</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <ul>
+                <li>
+                    <a href="../search/search.html">
+                        <span class="icon-btn">🔍</span>
+                        さがす
+                    </a>
+                </li>
+                <li>
+                    <a href="../login/login.html">
+                        <span class="icon-btn">👤</span>
+                        ログイン
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="support-area">
+        <h1>サポート・ヘルプ</h1>
+
+        <div class="faq-section">
+            <h2>よくある質問（FAQ）</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    Q: 経費精算はどのように申請すれば良いですか？
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    A: 経費精算は社内システム**「Navi-EX」**から申請してください。詳しい手順は、**「経費精算マニュアル」**を検索ページで確認できます。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    Q: パスワードを忘れてしまいました。再設定できますか？
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    A: ログイン画面の**「パスワードをお忘れの方はこちら」**から再設定が可能です。手順が不明な場合は、システム部門へご連絡ください。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    Q: 社内報はどこで見られますか？
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    A: 社内報はトップページの**「ピックアップ」**セクション、または文書管理システムに格納されています。最新号は毎月1日に更新されます。
+                </div>
+            </div>
+
+        </div>
+
+        <div class="contact-section">
+            <h2>解決しない場合はお問い合わせください</h2>
+            <p>FAQで問題が解決しない場合や、緊急のシステム障害については下記よりお問い合わせください。</p>
+            <a href="#" class="contact-button">問い合わせフォームへ進む</a>
+        </div>
+    </main>
+
+    <script>
+        // FAQのアコーディオン機能のためのJavaScript
+        function toggleAnswer(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+
+            if (answer.style.display === "block") {
+                // 非表示にする
+                answer.style.display = "none";
+                icon.textContent = "+";
+            } else {
+                // 表示にする (アコーディオンを開く)
+                // 他の開いているFAQを閉じる処理
+                const allAnswers = document.querySelectorAll('.faq-answer');
+                const allIcons = document.querySelectorAll('.faq-icon');
+
+                allAnswers.forEach(a => a.style.display = "none");
+                allIcons.forEach(i => i.textContent = "+");
+
+                // 現在のFAQを開く
+                answer.style.display = "block";
+                icon.textContent = "−"; // マイナス記号に変更
+            }
+        }
+    </script>
+
+</body>
+</html>
