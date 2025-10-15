@@ -1,55 +1,149 @@
-<link rel="stylesheet" href="style.css">
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ナリちゃんのお困りごと相談室</title>
+    <title>ナリコマ社内ホームページ</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- 背景スライドショー -->
-    <div class="slideshow">
-        <div class="slide fade" style="background-image: url('images/bg1.jpg');"></div>
-        <div class="slide fade" style="background-image: url('images/bg2.jpg');"></div>
-        <div class="slide fade" style="background-image: url('images/bg3.jpg');"></div>
+
+    <header class="global-header">
+        <div class="header-left">
+            <a href="/">
+                <div class="logo">
+                    <img src="images/narikoma.jpg" alt="ナリちゃん">
+                </div>
+            </a>
+            <span>NARIKOMA</span>
+        </div>
+
+        <nav class="header-nav">
+            <ul>
+                <li><a href="#">トピックス</a></li>
+                <li><a href="#">ピックアップ</a></li>
+                <li><a href="#">サポート</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-icons">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon-btn">🔍</span>
+                        さがす
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon-btn">👤</span>
+                        ログイン
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="main-visual-wrapper">
+        <div class="main-visual">
+            <div class="slide-content">
+                <div class="slide-text">
+                    瞬
+                    一
+                    な
+                    い
+                    ね
+                    い
+                    て
+                    事
+                    食
+                    一
+                    な
+                    か
+                    や
+                    穏
+                    る
+                    彩
+                    を
+                    々
+                    日
+                </div>
+
+                <div class="slides-wrapper">
+                    <figure class="slide-content slide-1"></figure>
+                    <figure class="slide-content slide-2"></figure>
+                    <figure class="slide-content slide-3"></figure>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- 左側の縦画像 -->
-    <div class="side-images">
-        <img src="images/鮭.png" alt="鮭キャラ">
-        <img src="images/side2.png" alt="左画像2">
-        <img src="images/side3.png" alt="左画像3">
+    <div class="news-area">
+        <h2 class="news-title">ナリコマNEWS</h2>
+
+        <ul class="news-list">
+            <li>
+                <a href="#">
+                    <span class="news-date">2025.10.01</span>
+                    <span class="news-tag">重要</span>
+                    <span class="news-title-text">【全社員必須】新評価制度に関する説明会資料を公開しました。</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="news-date">2025.09.28</span>
+                    <span class="news-tag" style="background-color: #007bff;">システム</span>
+                    <span class="news-title-text">経費精算システム「Navi-EX」の定期メンテナンスのお知らせ（10/10 1:00-5:00）</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="news-date">2025.09.25</span>
+                    <span class="news-tag" style="background-color: #28a745;">イベント</span>
+                    <span class="news-title-text">【社内イベント】秋の懇親会のお知らせと参加申し込みフォーム</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="news-date">2025.09.20</span>
+                    <span class="news-title-text">【人事異動】〇〇部門および関連部署の一部異動について</span>
+                </a>
+            </li>
+        </ul>
     </div>
 
-    <!-- 中央のメインコンテンツ -->
-    <div class="center-content">
-        <img src="images/logo.png" alt="ナリちゃんロゴ" class="logo">
-        <h1>ナリちゃんのお困りごと相談室</h1>
-        <p>あなたの「ちょっと困った」をナリちゃんが解決！</p>
-        <a href="contact.html" class="cta-button">相談してみる ➤</a>
+    <!-- 🔸 左側に縦に並ぶ3枚のぷかぷか画像 -->
+    <div class="side-image-column">
+        <img src="images/sake.png" alt="鮭" class="side-img floaty">
+        <img src="images/onigiri.png" alt="おにぎり" class="side-img floaty" style="animation-delay: 1s;">
+        <img src="images/pudding.png" alt="プリン" class="side-img floaty" style="animation-delay: 2s;">
     </div>
 
-    <!-- ナリちゃん（右下固定） -->
-    <a href="contact.html" class="contact-floating">
-        <div class="contact-text">お問い合わせはこちら</div>
-        <img src="images/narikoma.jpg" alt="ナリちゃん" class="contact-avatar">
-    </a>
+    <!-- 🔸 右下 ナリちゃんチャットボタン -->
+    <div class="fixed-chatbot-container">
+        <a href="../inquiry/index.html" class="icon-box floaty-nari" target="_blank"></a>
+        <span class="arrow">→</span>
+        <div class="text">チャットボットに聞いてみて</div>
+    </div>
 
-    <!-- スライドショー制御 -->
     <script>
-        let slideIndex = 0;
-        const slides = document.querySelectorAll(".slide");
+        const wrapper = document.querySelector('.slides-wrapper');
+        const slides = document.querySelectorAll('.slide-content');
+        const totalSlides = slides.length;
+        let currentIndex = 0;
+        const slideInterval = 3000;
 
-        function showSlides() {
-            slides.forEach(slide => (slide.style.opacity = "0"));
-            slideIndex++;
-            if (slideIndex > slides.length) slideIndex = 1;
-            slides[slideIndex - 1].style.opacity = "1";
-            setTimeout(showSlides, 5000);
+        function updateSlide() {
+            const moveDistance = -currentIndex * 100;
+            wrapper.style.transform = `translateX(${moveDistance}%)`;
         }
 
-        showSlides();
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlide();
+        }
+
+        setInterval(nextSlide, slideInterval);
+        updateSlide();
     </script>
 </body>
 </html>
