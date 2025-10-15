@@ -1,87 +1,315 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ナリコマ社内ホームページ</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ナリちゃんのお困りごと相談室</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .chat-container {
+            width: 400px;
+            height: 600px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ヘッダーの背景を赤色に変更 */
+        .chat-header {
+            background-color: #D32F2F;
+            color: white;
+            padding: 15px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            text-align: center;
+        }
+
+        .chatbox {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 15px;
+        }
+
+            .message p {
+                padding: 10px 15px;
+                border-radius: 18px;
+                max-width: calc(80% - 75px);
+                line-height: 1.4;
+                position: relative;
+            }
+
+        /* 💡 アイコンのCSS */
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+            /* 💡 imgタグのスタイルを追加 */
+            .avatar img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* 画像が要素に収まるように調整 */
+            }
+
+        /* 💡 ユーザーのチャット（Flexboxに変更し右寄せ） */
+        .user {
+            display: flex;
+            justify-content: flex-end; /* 右寄せ */
+            margin-right: -20px;
+        }
+
+            .user p {
+                background-color: #D32F2F;
+                color: white;
+                margin-right: 0;
+            }
+
+                /* 💡 ユーザー吹き出しのしっぽ（右向き） */
+                .user p::before {
+                    content: '';
+                    position: absolute;
+                    top: 10px;
+                    right: -21px; /* 吹き出しの右端から外側へ突き出す */
+                    border: 15px solid transparent; /* しっぽのサイズ */
+                    border-left-color: #D32F2F;
+                }
+
+        /* 💡 AIのチャット（Flexboxに変更、アイコンと吹き出しを中央揃え） */
+        .ai {
+            display: flex;
+            align-items: center; /* 💡 修正: アイコンと吹き出しを垂直方向の中央で揃える */
+        }
+
+            .ai p {
+                background-color: #e9e9eb;
+                color: #333;
+                margin-left: 15px; /* 💡 修正: アイコンと吹き出しの間隔を調整 */
+            }
+
+                /* 💡 AI吹き出しのしっぽ（左向き） */
+                .ai p::before {
+                    content: '';
+                    position: absolute;
+                    top: 10px;
+                    left: -25px; /* 吹き出しの左端から外側へ突き出す */
+                    border: 15px solid transparent; /* しっぽのサイズ */
+                    border-right-color: #e9e9eb; /* 吹き出しと同じ色 */
+                }
+
+        .input-area {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        #userInput {
+            flex-grow: 1;
+            border: 1px solid #ccc;
+            border-radius: 18px;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+            /* 入力欄のフォーカス色を赤色に変更 */
+            #userInput:focus {
+                outline: none;
+                border-color: #D32F2F;
+            }
+
+        /* 送信ボタンの背景を赤色に変更 */
+        button {
+            background-color: #D32F2F;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* 💡 フロー制御ボタンのスタイル */
+        .flow-control p button {
+            background-color: #3f51b5; /* 青系 */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            margin-top: 5px;
+            margin-right: 5px;
+            cursor: pointer;
+            width: auto; /* 幅をリセット */
+            height: auto; /* 高さをリセット */
+            font-size: 14px;
+        }
+
+            .flow-control p button:disabled {
+                background-color: #90a4ae; /* グレーアウト */
+                cursor: default;
+            }
+    </style>
 </head>
 <body>
-    <!-- ヘッダー -->
-    <header class="global-header">
-        <div class="header-left">
-            <div class="logo">
-                <span>NK</span>
-            </div>
-            <span>NARIKOMA</span>
-        </div>
-
-        <nav class="header-nav">
-            <ul>
-                <li><a href="#">トピックス</a></li>
-                <li><a href="#">ピックアップ</a></li>
-                <li><a href="#">サポート</a></li>
-            </ul>
-        </nav>
-
-        <div class="header-icons">
-            <ul>
-                <li>
-                    <a href="#"><span class="icon-btn">🔍</span>さがす</a>
-                </li>
-                <li>
-                    <a href="#"><span class="icon-btn">👤</span>ログイン</a>
-                </li>
-            </ul>
-        </div>
-    </header>
-
-    <!-- メインビジュアル -->
-    <div class="main-visual-wrapper">
-        <div class="side-images">
-            <img src="images/sake.png" alt="鮭">
-            <img src="images/onigiri.png" alt="おにぎり">
-            <img src="images/pudding.png" alt="プリン">
-        </div>
-
-        <div class="main-visual">
-            <div class="slides-wrapper">
-                <figure class="slide-content slide-1"></figure>
-                <figure class="slide-content slide-2"></figure>
-                <figure class="slide-content slide-3"></figure>
-            </div>
-            <div class="slide-text">
-                穏やかな日々に彩りを
-                一食一食に
-                瞬間の幸せを
+    <div class="chat-container">
+        <div class="chat-header"><h2>ナリちゃんのお困りごと相談室</h2></div>
+        <div class="chatbox" id="chatbox">
+            <div class="message ai">
+                <div class="avatar">
+                    <img src="narikoma.jpg" alt="ナリちゃんのアイコン">
+                </div>
+                <p>こんにちは！何か質問はありますか？</p>
             </div>
         </div>
-    </div>
-
-    <!-- ニュースエリア -->
-    <div class="news-area">
-        <h2 class="news-title">ナリコマNEWS</h2>
-        <ul class="news-list">
-            <li><a href="#"><span class="news-date">2025.10.01</span><span class="news-tag">重要</span><span class="news-title-text">新評価制度に関する説明会資料を公開しました。</span></a></li>
-            <li><a href="#"><span class="news-date">2025.09.28</span><span class="news-tag">システム</span><span class="news-title-text">経費精算システム「Navi-EX」の定期メンテナンスのお知らせ。</span></a></li>
-            <li><a href="#"><span class="news-date">2025.09.25</span><span class="news-tag">イベント</span><span class="news-title-text">秋の懇親会のお知らせと参加申し込みフォーム</span></a></li>
-        </ul>
-    </div>
-
-    <!-- 右下ナリちゃん -->
-    <div class="fixed-chatbot-container">
-        <a href="chat.html" class="icon-box"></a>
-        <span class="arrow">→</span>
-        <div class="text">チャットボットに聞いてみて</div>
+        <div class="input-area" id="inputArea">
+            <input type="text" id="userInput" placeholder="メッセージを入力...">
+            <button onclick="sendMessage()">➤</button>
+        </div>
     </div>
 
     <script>
-        const wrapper = document.querySelector('.slides-wrapper');
-        let currentIndex = 0;
-        const totalSlides = document.querySelectorAll('.slide-content').length;
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % totalSlides;
-            wrapper.style.transform = `translateX(${-currentIndex * 100}%)`;
-        }, 3000);
+        // 状態管理用の変数（「いいえ」が押された回数）
+        let noCount = 0;
+        const MAX_ATTEMPTS = 3; // maxの回数
+
+        // JavaScript (ブラウザで動くプログラム)
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const chatbox = document.getElementById('chatbox');
+            const question = userInput.value.trim();
+
+            if (!question) return;
+
+            // 自分の質問を画面に追加
+            chatbox.innerHTML += `<div class="message user"><p>${question}</p></div>`;
+            userInput.value = '';
+            chatbox.scrollTop = chatbox.scrollHeight;
+
+            // 裏方のプログラム(/ask)に質問を送信する
+            // サーバーからの応答を取得 (ここでは仮の応答ロジックを使用)
+            let answer = "「" + question + "」ですね。AIオペレーターが回答します。";
+            try {
+                const response = await fetch('/ask', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: question })
+                });
+
+                const data = await response.json();
+                answer = data.answer || data.error || answer;
+            } catch (e) {
+                // fetchが失敗した場合は初期の仮応答を使用
+            }
+
+            // AIの答えとフロー制御メッセージを画面に追加
+            // 💡 3. 回答表示後、新しい関数を呼び出し、フロー制御用のHTMLを生成
+            handleAnswer(answer);
+
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        // 💡 4. 回答と「解決しましたか？」のフローを管理する新しい関数
+        function handleAnswer(answer) {
+            const chatbox = document.getElementById('chatbox');
+
+            // AIの答えを画面に追加
+            chatbox.innerHTML += `
+                <div class="message ai">
+                    <div class="avatar">
+                        <img src="narikoma.jpg" alt="ナリちゃんのアイコン">
+                    </div>
+                    <p>${answer}</p>
+                </div>
+            `;
+
+            // 💡 フロー制御用のボタンを追加
+            chatbox.innerHTML += `
+                <div class="message ai flow-control">
+                    <div class="avatar">
+                        <img src="narikoma.jpg" alt="ナリちゃんのアイコン">
+                    </div>
+                    <p>解決しましたか？
+
+<button onclick="handleFlow('yes', this)">はい</button>
+                        <button onclick="handleFlow('no', this)">いいえ</button>
+                    </p>
+                </div>
+            `;
+        }
+
+        // 💡 5. 「はい」または「いいえ」ボタンが押された時のロジック
+        function handleFlow(type, buttonElement) {
+            const chatbox = document.getElementById('chatbox');
+            const inputArea = document.getElementById('inputArea'); // 入力エリアを有効/無効にするためIDを追加
+
+            // すべてのフローボタンを無効にする（多重クリック防止）
+            const flowButtons = buttonElement.parentNode.querySelectorAll('button');
+            flowButtons.forEach(btn => btn.disabled = true);
+
+            // メッセージ表示用の div を準備
+            let flowMessage = "";
+
+            if (type === 'yes') {
+                // --- 【はい】が押された場合のフロー ---
+                flowMessage = "お役に立ててよかったです！ほかに質問はありますか？";
+                noCount = 0; // 💡 いいえのカウントをリセット
+
+            } else {
+                // --- 【いいえ】が押された場合のフロー ---
+                noCount++;
+
+                if (noCount >= MAX_ATTEMPTS) {
+                    // 3回以上に達した場合
+                    const displayPhoneNumber = '012-3456-7890'; // 💡 電話番号を設定
+                    const rawPhoneNumber = '01234567890';
+
+                    const telLink = `<a href="tel:${rawPhoneNumber}" style="color: #D32F2F; text-decoration: underline;">${displayPhoneNumber}</a>`;
+
+                    flowMessage = `お手数ですがこちらまでお電話ください：
+<strong>${telLink}</strong>`;
+                    // inputArea.style.display = 'none'; // 💡 質問の受付を終了したい場合は入力欄を非表示に
+
+                } else {
+                    // 3回未満の場合
+                    flowMessage = "もう一度教えてください。。";
+                }
+            }
+
+            // 制御メッセージを画面に追加
+            chatbox.innerHTML += `
+                <div class="message ai flow-response">
+                    <div class="avatar">
+                        <img src="narikoma.jpg" alt="ナリちゃんのアイコン">
+                    </div>
+                    <p>${flowMessage}</p>
+                </div>
+            `;
+
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        // エンターキーでの送信
+        document.getElementById('userInput').addEventListener('keypress', e => {
+            if (e.key === 'Enter') sendMessage();
+        });
     </script>
 </body>
 </html>
